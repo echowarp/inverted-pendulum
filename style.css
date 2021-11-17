@@ -1,0 +1,328 @@
+html {
+    padding: 0; margin: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("img/circuit.png");
+    background-color: #fafafa;
+    overflow: hidden;
+}
+body {
+    overflow: auto;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    font-family: Arial, Verdana, sans-serif;
+    font-size: 13px;
+    color: #222;
+    overflow: hidden;
+
+    font-family: Verdana, Arial, sans-serif;
+
+}
+
+
+h1, h2, h3, h4 {
+    color: #666;
+    line-height: 1em;
+    margin: 0;
+    padding: 0;
+}
+
+h3 {
+    font-size: 14px;
+}
+
+
+
+
+
+#track {
+    overflow-x: visible;
+    overflow-y: visible;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 99.9%;
+
+    vertical-align: bottom;
+
+    height: 600px;
+
+    /* ROAD */
+    background: url(img/dashes.png) repeat-x, -moz-linear-gradient(top,                    rgba(0,0,0,0) 460px,                     rgba(0,0,0,0.8) 462px,             rgba(140,140,140,1) 464px,             rgba(107,107,107,1) 480px,             rgba(65,69,64,1) 519px,               rgba(65,69,64,0) 520px); /* FF3.6+ */
+    background: url(img/dashes.png) repeat-x, -webkit-gradient(linear, left top, left bottom, color-stop(460px,rgba(0,0,0,0)),      color-stop(462px,rgba(0,0,0,0.8)), color-stop(464px,rgba(140,140,140,1)), color-stop(480px,rgba(107,107,107,1)), color-stop(519px,rgba(65,69,64,0)),    color-stop(520px,rgba(65,69,64,0))); /* Chrome,Safari4+ */
+    background: url(img/dashes.png) repeat-x, -webkit-linear-gradient(top,                 rgba(0,0,0,0) 460px,                     rgba(0,0,0,0.8) 462px,             rgba(140,140,140,1) 464px,             rgba(107,107,107,1) 480px,             rgba(65,69,64,1) 519px,               rgba(65,69,64,0) 520px); /* Chrome10+,Safari5.1+ */
+    background: url(img/dashes.png) repeat-x, -o-linear-gradient(top,                      rgba(0,0,0,0) 460px,                     rgba(0,0,0,0.8) 462px,             rgba(140,140,140,1) 464px,             rgba(107,107,107,1) 480px,             rgba(65,69,64,1) 519px,               rgba(65,69,64,0) 520px); /* Opera 11.10+ */
+    background: url(img/dashes.png) repeat-x, -ms-linear-gradient(top,                     rgba(0,0,0,0) 460px,                     rgba(0,0,0,0.8) 462px,             rgba(140,140,140,1) 464px,             rgba(107,107,107,1) 480px,             rgba(65,69,64,1) 519px,               rgba(65,69,64,0) 520px); /* IE10+ */
+    background: url(img/dashes.png) repeat-x, linear-gradient(to bottom,                   rgba(0,0,0,0) 460px,                     rgba(0,0,0,0.8) 462px,             rgba(140,140,140,1) 464px,             rgba(107,107,107,1) 480px,             rgba(65,69,64,1) 519px,               rgba(65,69,64,0) 520px); /* W3C */
+    background-attachment:local;
+    background-repeat: repeat-x;
+    /* filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#414540',GradientType=0 ); */ /* IE6-9 */
+
+
+
+    -moz-user-select:-moz-none;
+    -moz-user-select:none;
+    -o-user-select:none;
+    -khtml-user-select:none;
+    -webkit-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+}
+
+#cart {
+    overflow: visible;
+    position: absolute;
+    left: 400px;
+    bottom: 78px;
+}
+
+#cart #link {
+    height: 150px;
+    width: 20px;
+
+    background-color: #eee;
+    border: 1px solid #ccc;
+    position: absolute;
+    top: 89px;
+    left: 115px;
+
+    border-radius: 15px;
+    z-index: 10;
+
+    box-shadow: inset 0 0 2px #fff, 0 0 2px #333;
+}
+
+#cartWlabel {
+    position: absolute;
+    bottom: 85px;
+    left: 0px;
+    width: 250px;
+    text-align: center;
+    font-weight: bold;
+    color: #555;
+    z-index: 5;
+
+}
+#cart #weight {
+    margin: -25px -15px 0;
+    background-color: #ccc;
+    border: 1px solid #999;
+
+    color: #666;
+    text-shadow: 0 0 1px #fff;
+    font-weight: bold;
+    text-align: center;
+    line-height: 30px;
+    height: 30px;
+    vertical-align: center;
+
+    box-shadow: inset 0 0 2px #fff, 0 0 2px #333;;
+
+    border-radius: 5px;
+    z-index: 15;
+}
+
+#cart #cart-img {
+    width: 250px;
+    height: 204px;
+}
+
+
+
+
+
+#graph, #settings {
+    color: #333;
+    
+    box-shadow: 0 0 9px #999, inset 0 0 2px #fff;
+
+    background: #f6f6f6;
+    border: 1px solid #bbb;
+
+    padding: 5px;
+
+    position: absolute;
+}
+
+
+#graph {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 90;
+
+    border-left: none;
+    border-top: none;
+
+    border-radius: 0 0 8px 0;
+}
+
+#graph #download, #graph #showData {
+    position: absolute;
+    right: 5px;
+
+    text-align: center;
+    background: #eee;
+    color: #222;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 3px 2px;
+    width: 100px;
+
+
+    text-decoration: none;
+    z-index: 200;
+}
+#graph #download {
+    bottom: 5px;
+    cursor: pointer;
+}
+#graph #showData {
+    bottom: 42px;
+    cursor: pointer;
+}
+#dialog {
+    white-space: pre;
+    font-family: monospace;
+}
+
+
+
+
+
+
+#settings {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    border-top: 0;
+    border-right: 0;
+    border-radius: 0 0 0 8px;
+
+
+    
+
+    color: #333;
+
+    z-index: 100;
+}
+
+#control-settings, #state-list, #properties-list {
+    float: left;
+    padding: 0 9px 0 0;
+}
+
+#F-slider {
+    width: 250px;
+}
+
+#F-label {
+    width: 80px;
+    height: 20px;
+    line-height: 20px;
+    vertical-align: center;
+    margin: 0 0 10px 0;
+    text-align: right;
+    float: right;
+    position: absolute;
+    top: 20px;
+    right: 5px;
+}
+
+
+
+
+#controller-type {
+    padding: 5px 0;
+    margin: 5px 0;
+    border-top: 1px solid #bbb;
+    border-bottom: 1px solid #bbb;
+}
+
+#control-pos {
+    float: right;
+    margin: -19px 0 -13px 0;
+    vertical-align: top;
+}
+#control-eq {
+    height: 19px;
+    vertical-align: top;
+}
+#control-eq span {
+    white-space: nowrap;
+    height: 18px;
+    display: inline-block;
+    overflow: hidden;
+    margin: 0; padding: 0;
+}
+#control-pos input {
+}
+
+
+
+
+#control-settings .label,
+#state-list .label,
+#properties-list .label {
+    width: 17px;
+    display: inline-block;
+    margin: 0 0 5px 10px;
+    color: #444;
+}
+
+#properties-list div,
+#state-list div,
+#properties-list div {
+    color: #888;
+}
+
+#control-settings .input-text,
+#state-list .input-text,
+#properties-list .input-text {
+    width: 42px;
+    margin: 0 -2px 0 3px;
+}
+
+
+.input-text {
+    border: 1px solid #bbb;
+    background-color: #fefefe;
+    border-radius: 3px;
+    padding: 0 4px 0 0;
+    width: 22px;
+    text-align: right;
+    box-shadow: 0 0 1px #fff;
+}
+
+#settings hr {
+    clear: both;
+    background-color: #ccc;
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 5px 4px 0;
+}
+
+#startStop {
+    float: left;
+    clear: left;
+    width: 80px;
+    text-align: center;
+    margin: 5px 0 0 5px;
+    cursor: pointer;
+}
+
+#reset {
+    float: right;
+    width: 70px;
+    text-align: center;
+    margin: 5px 0 5px 10px;
+    display: none;
+    cursor: pointer;
+}
+
+#time {
+    float: left;
+    margin: 5px 0 0 5px;
+}

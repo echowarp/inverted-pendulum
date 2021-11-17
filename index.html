@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"> 
+    <title>Inverted Pendulum Simulation</title>
+
+    <meta name="viewport" content="width=1100">
+    <meta charset="utf-8"> 
+
+    <script src="jslib/jquery-1.10.2.min.js"></script>
+    <script src="jslib/jquery-ui-1.10.4.custom.min.js"></script>
+
+    <script src="jslib/jQueryRotateCompressed.js"></script>
+    <script src="jslib/d3.v3.min.js" charset="utf-8"></script>
+    <script src="jslib/c3.min.js"></script>
+
+    <script src="myChart.js"></script>
+    <script src="simulation.js"></script>
+    <script src="cart.js"></script>
+    <script src="controller.js"></script>
+    <script src="settings.js"></script>
+    <script src="init.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="jslib/c3.css">
+    <link rel="stylesheet" type="text/css" href="jslib/css/smoothness/jquery-ui-1.10.4.custom.min.css">
+    <link type="text/css" rel="stylesheet" href="style.css">
+
+</head>
+
+<body onload="init()">
+
+
+<div id="graph">
+    <div id="chart" title="Click labels in legend to show/hide lines."></div>
+    <a id="download" title="Download data as a .CSV file. Does not work in Internet Explorer.">Download</a>
+    <a id="showData" title="Show the data as a CSV. Copy into plain text file.">Show Data</a>
+</div>
+
+
+
+
+<div id="settings">
+
+    <h3 title="The force acting on the cart">Force ↦</h3>
+    <input type="range" value="0" min="-10" max="10" step=".05" id="F-slider" disabled="disabled"><div id="F-label"><span id="F-label-val">0</span> N</div>
+
+    <div id="controller-type">
+        <h3>Controller</h3>
+        <div id="control-pos"><input type="checkbox" id="control-x" >Control Position</div>
+        <div id="control-eq">
+        F = <span>-k<sub>Pθ</sub>·θ</span>
+            <span id="eq-Itheta"> - k<sub>Iθ</sub>·∫θdt</span>
+            <span> - k<sub>Dθ</sub>·ω</span>
+            <span id="eq-pos"><span>+ k<sub>Px</sub>·x</span>
+            <span> + k<sub>Ix</sub>·∫xdt</span>
+            <span> + k<sub>Dx</sub>·v</span>
+        </div>
+    </div>
+
+    <div id="control-settings">
+        <h3 title="The control gains">Gains</h3>
+        <div id="kP">
+            <span class="label">k<sub>Pθ</sub></span>
+            <input type="text" value="0.0" size="2" class="input-text" title="Proportional gain on angle error" />
+        </div>
+        <div id="kI">
+            <span class="label">k<sub>Iθ</sub></span>
+            <input type="text" value="0.0" size="2" class="input-text" title="Integral gain on angle error" />
+        </div>
+        <div id="kD">
+            <span class="label">k<sub>Dθ</sub></span>
+            <input type="text" value="0.0" size="2" class="input-text" title="Derivative gain on angle error" />
+        </div>
+        <div id="kPx">
+            <span class="label">k<sub>Px</sub></span>
+            <input type="text" value="0.0" size="2" class="input-text" title="Proportional gain on position error" />
+        </div>
+        <div id="kIx">
+            <span class="label">k<sub>Ix</sub></span>
+            <input type="text" value="0.0" size="2" class="input-text" title="Integral gain on position error" />
+        </div>
+        <div id="kDx">
+            <span class="label">k<sub>Dx</sub></span>
+            <input type="text" value="0.0" size="2" class="input-text" title="Derivative gain on position error" />
+        </div>
+    </div>
+
+    <div id="state-list">
+        <h3 title="The states of the pendulum block and cart">States</h3>
+        <div id="x">
+            <span class="label">x<sub>↦</sub></span>
+            <input type="text" value="0.0" size="2" class="input-text" title="position in meters" /> m
+        </div>
+        <div id="v">
+            <span class="label">v<sub>↦</sub></span>
+            <input type="text" value="0.0" size="2" class="input-text" title="velocity in meters per second" /> m/s
+        </div>
+        <div id="theta">
+            <span class="label">θ<sub>↑↺</sub></span>
+            <input type="text" value="0.35" size="2" class="input-text" title="angle of bar in radians" /> rad
+        </div>
+        <div id="omega">
+            <span class="label">ω<sub>↺</sub></span>
+            <input type="text" value="0.0" size="2" class="input-text" title="angular velocity in radians per second" /> rad/s
+        </div>
+    </div>
+
+    <div id="properties-list">
+        <h3 title="Properties related to the cart and pendulum">Properties</h3>
+        <div id="mc">
+            <span class="label">m<sub>c</sub></span>
+            <input type="text" value="1.0" size="1" class="input-text" title="Mass of the cart" /> kg
+        </div>
+        <div id="mb">
+            <span class="label">m<sub>b</sub></span>
+            <input type="text" value="1.0" size="1" class="input-text" title="Mass of the block on the end of the pendulum" /> kg
+        </div>
+        <div id="l">
+            <span class="label">L</span>
+            <input type="text" value="2.0" size="1" class="input-text" title="Length of the pendulum" /> m
+        </div>
+        <div id="b">
+            <span class="label">b</span>
+            <input type="text" value="0" size="1" class="input-text" title="Coefficient of friction (F=-b*v)" /> Ns/m
+        </div>
+        <div id="FD">
+            <span class="label">F<sub>D</sub></span>
+            <input type="text" value="0" size="1" class="input-text" title="Disturbance force applied to the cart" /> N
+        </div>
+    </div>
+
+    <hr />
+
+
+    <input type="button" value="Simulate" id="startStop" title="Start and stop a simulation. A graph will appear when simulation ends." />
+    
+    <span id="time">
+        for <input type="text" value="5" size="1" title="seconds" class="input-text" /> seconds
+    </span>
+
+    <input type="button" value="Reset" id="reset" title="Reset the states to what they were before the simulation started" />
+</div>
+
+
+
+
+
+<div id="track">
+    <div id="cart">
+        <div id="link"><div id="weight">1kg</div></div>
+        <div id="cartWlabel">1kg</div>
+        <img src="img/cart.svg" id="cart-img" />
+    </div>
+</div>
+
+</body>
+</html>
