@@ -1,5 +1,5 @@
 
-
+// remove the need for Math for cos/sin
 function cos(theta) { 
     return Math.cos( theta );
 }
@@ -132,7 +132,6 @@ function Simulation() {
 
     /////////////////////////////////////
     // physics simulation
-
     this.calcDynamics = function(state) {
         // xd, x, thetad, theta
 
@@ -143,7 +142,6 @@ function Simulation() {
 
         var M = cart.mc + cart.mb;
         var g = -9.81;
-
 
         var F =  cart.F + cart.FD - cart.xd * cart.b;
 
@@ -161,6 +159,7 @@ function Simulation() {
         
 
         // do RK4
+        // https://en.wikipedia.org/wiki/Runge%E2%80%93Kutta_methods
         rhs0 = self.calcDynamics( state );
         for ( st=0; st< state.length; st++ ) {
             iState[st] = state[st] + rhs0[st] * dtBy2;

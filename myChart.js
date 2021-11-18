@@ -5,9 +5,7 @@ $(document).ready(function() {
         bindto: '#chart',
         data: {
             x: 'time (s)',
-
             columns: [],
-
             axes: {
                 'theta (rad)': 'y',
                 'force (N)': 'y2',

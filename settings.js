@@ -1,4 +1,4 @@
-
+// React to changes in text inputs
 function bindInputs() {
     $("#kP input").change(function() {
         controller.kP = parseFloat( $("#kP input").val() );
@@ -174,8 +174,12 @@ function initSettings() {
         }
     })
 
+    // attach event listeners to the inputs
+    bindInputs(); 
 
-    bindInputs(); // attach event listeners to the inputs
-    $("#x input, #v input, #theta input, #omega input").trigger("change"); // override JavaScript values with HTML ones
-    $("#kP input, #kI input, #kD input").trigger("change"); // override JavaScript values with HTML ones
+    // override JavaScript values with HTML ones
+    $("#x input, #v input, #theta input, #omega input").trigger("change"); 
+
+    // override JavaScript values with HTML ones
+    $("#kP input, #kI input, #kD input").trigger("change"); 
 }
